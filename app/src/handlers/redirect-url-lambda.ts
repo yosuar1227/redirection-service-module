@@ -1,0 +1,1 @@
+//lambda to redirect by code of the path url if the code exits in the data base
