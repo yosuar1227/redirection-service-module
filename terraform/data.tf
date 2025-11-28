@@ -26,7 +26,8 @@ data "aws_iam_policy_document" "lambda_redirect_url_execution" {
   statement {
     effect = "Allow"
     actions = [
-      "dynamodb:GetItem"
+      "dynamodb:GetItem",
+      "dynamodb:PutItem"
     ]
     resources = [
       data.aws_dynamodb_table.ShortLinkTable.arn
