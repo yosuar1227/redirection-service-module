@@ -22,11 +22,19 @@ const redirectToUrlByCodeLambda = async (
 
     console.log("URL DATA FORM DATA BASE::", urlDataFromDb);
 
+    const originalUrl = urlDataFromDb?.fullUrl;
+
+    if (!originalUrl) {
+        throw createHttpError.InternalServerError("Cannot continue without Original Url")
+    }
+
+    console.log("ORIGINAL URL::", originalUrl);
+
     return {
-        statusCode: 200,
-        body: JSON.stringify(urlDataFromDb),
+        statusCode: 302,
+        body: JSON.stringify({ success: true }),
         headers: {
-            "Content-type": "application/json",
+            Location: originalUrl
         }
     }
 }
