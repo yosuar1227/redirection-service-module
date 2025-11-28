@@ -23,7 +23,6 @@ app/
 │   │   └── dynamodb.ts
 │   ├── handlers/
 │   │   └── redirect-url-lambda.ts
-│   └── index.ts (opcional)
 │
 └── terraform/
     ├── main.tf
