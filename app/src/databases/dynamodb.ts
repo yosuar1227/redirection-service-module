@@ -3,9 +3,11 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {
     DynamoDBDocumentClient,
     GetCommand,
+    PutCommand,
 } from "@aws-sdk/lib-dynamodb";
 
 export const LINK_CODE_GROUP = 'LINK_CODE';
+export const LINK_CLICK_CODE_GROUP = 'LINK_CODE_CLICK';
 
 export class DynamoService {
 
@@ -44,5 +46,18 @@ export class DynamoService {
         }
     }
 
+    async save(item: Record<string, any>) {
+        try {
+            const response = await this.client.send(
+                new PutCommand({
+                    TableName: process.env.ShortLinkTable,
+                    Item: item,
+                })
+            );
 
+            return response;
+        } catch (error) {
+            console.error("Error saving in dynamo db ", error);
+        }
+    }
 }
